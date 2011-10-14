@@ -14,6 +14,6 @@ class Welcome_Controller extends Template_Controller {
 	}
 	
 	public function index() {
-		echo "test";
+		$this->template->content = "Hello world";
 	}
 }

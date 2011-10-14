@@ -35,7 +35,6 @@ class Minwork {
 			require_once $controller_class_file;
 			
 			$controller_class = ucfirst($controller) . "_Controller";
-			
 			$action = Request::instance()->get("a");
 			$action = empty($action) ? "index" : $action;
 			
@@ -50,6 +49,9 @@ class Minwork {
 			//create a new instance of the controller
 			$controller = new $controller_class();
 			
+			//Template class enabled?
+			$template_enabled = is_a($controller, "Template_Controller") ? true : false;
+			
 			//check if method exists
 			if(!method_exists($controller_class, $action)) {
 				throw new Exception("Controller Method ({$action}) doesn't exist!");
@@ -57,6 +59,11 @@ class Minwork {
 			
 			//load the action and send the parameters to the method
 			call_user_func(array($controller, $action), $params);
+			
+			//render template file if template class is extended
+			if($template_enabled) {
+				$controller->__render();
+			}
 		}
 	}
 }
