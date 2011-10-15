@@ -15,5 +15,7 @@ class Welcome_Controller extends Template_Controller {
 	
 	public function index() {
 		$this->template->content = "Hello world";
+		$this->load_model("items");
+		$this->template->content .= ":::" . $this->model->items->total_items();
 	}
 }

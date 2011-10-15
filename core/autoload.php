@@ -4,6 +4,7 @@ function __autoload($classname) {
 	//check each necessary folder for class files to be autoloaded
 	$folders = array(
 		'web/libs/',
+		'web/models/',
 		'core/libs/db/',
 		'core/libs/',
 		'core/'

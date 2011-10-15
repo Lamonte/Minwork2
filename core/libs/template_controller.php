@@ -6,21 +6,18 @@
  * @copyright	2009-2012
  */
  
-class Template_Controller {
+class Template_Controller extends Controller {
 
 	public $template = 'template'; //default template file
 	public $auto_render = true;    //check: __render() function
-	//public $db = null;             //database variable to use globally in all extended controllers
 
 	/**
 	 * Load default template
 	 */
 	public function __construct()
 	{
-		//global $db;
-
+		parent::__construct();
 		$this->template = new View($this->template);
-		//$this->db = $db;
 	}
 
 	/**

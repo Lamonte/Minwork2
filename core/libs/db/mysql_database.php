@@ -32,4 +32,8 @@ class Mysql_database extends Database_abstract {
 	public function close() {
 		mysql_close($this->connect);
 	}
+	
+	public function num_rows() {
+		return mysql_num_rows($this->result);
+	}
 }	
