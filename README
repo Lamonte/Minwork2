@@ -1,3 +1,13 @@
-TODO
--------
-Not sure yet, everything is coming at me as I write it!
+===================
+CHANGES 10/15/2011
+===================
+
+- Updated Minwork Class so action functions are called via the 'action_' prefix 
+	Allow me to make public functions without actually being accessed from the url
+	came across this issue when making the callback method to my formhandler library.
+	(All methods must be updated now)
+	
+- Made README = CHANGELOGS for now on ill update this with things I change/update/fix
+- FormHandler library now has callbacks so you can use custom function checks from the
+	controller.  Instead of using built in callbacks.  Mainly useful like database
+	checks when needed and possibly other updates.

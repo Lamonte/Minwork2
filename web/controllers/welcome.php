@@ -13,9 +13,7 @@ class Welcome_Controller extends Template_Controller {
 		parent::__construct();
 	}
 	
-	public function index() {
+	public function action_index() {
 		$this->template->content = "Hello world";
-		$this->load_model("items");
-		$this->template->content .= ":::" . $this->model->items->total_items();
 	}
 }

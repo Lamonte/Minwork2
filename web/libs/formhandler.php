@@ -9,7 +9,9 @@
  */
  
 class FormHandler {
+
 	public static $rules = array(); //user defined rules
+	public static $callbacks = array(); //user defined callbacks
 	
 	public static $rules_function = array( //rule name => rule function name
 		'empty'	=> 'rule_empty',
@@ -21,6 +23,7 @@ class FormHandler {
 		'url'	=> 'Input field $1 not a valid url',
 	);
 	
+	public static $callbacks_message = array();
 	public static $error_array = array();
 	
 	/**
@@ -35,6 +38,19 @@ class FormHandler {
 	//do I get around this.
 	public function set_rules($input, $rules = array()) {
 		self::$rules[$input] = $rules;
+	}
+	
+	/**
+	 * Set Callbacks
+	 *
+	 * Allows you to setup form callbacks (custom user functions) used to validate the inputs set
+	 * 
+	 * @param	string $input
+	 * @param	array $rules
+	 */
+	
+	public function set_callback($input, $callbacks = array()) {
+		self::$callbacks[$input] = $callbacks;
 	}
 	
 	/**
@@ -62,6 +78,28 @@ class FormHandler {
 			}
 		}
 		
+		//loop through all callbacks and attempt to call them if methods exist
+		foreach(self::$callbacks as $input => $callback) {
+			
+			//loop through all the callbacks
+			foreach($callback as $cb) {
+				
+				//grabs the class/method from the array and creates a new array to check if its callable
+				$class_method = array($cb[0], $cb[1]);
+				
+				//check if method is callable
+				if(!is_callable($class_method, true, $callback_name)) {
+					throw new Exception("Callback method couldn't be called: {$cb}");
+				}
+				
+				//call user function. Note:: function needs to return true to trigger the error message
+				$cb_result = call_user_func($class_method, $input);
+				if($cb_result) {
+					self::set_callback_error($cb[2]);
+				}
+			}
+		}
+		
 		//Check if we have any errors
 		return (count(self::$error_array) > 0 ? false : true);
 	}
@@ -74,9 +112,10 @@ class FormHandler {
 	 * @return	string
 	 */
 	public function get_errors() {
-		$error_string = "<li>" . implode("</li> <li>", self::$error_array) . "</li>";
+		$error_string = "<ul><li>" . implode("</li> <li>", self::$error_array) . "</li></ul>";
 		return $error_string;
 	}
+	
 	/**
 	 * Set Error
 	 *
@@ -86,6 +125,10 @@ class FormHandler {
 	 */
 	public function set_error($input, $rule) {
 		self::$error_array[] = str_replace('$1', $input, self::$rules_message[$rule]);
+	}
+	
+	public function set_callback_error($error) {
+		self::$error_array[] = $error;
 	}
 	
 	/**

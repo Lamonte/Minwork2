@@ -7,8 +7,13 @@
  * settings that control the minwork2 framework.
  * Editing these settings will control how some things
  * work throughout the framework.
+ * @todo setup log and show errors to work with global defined variables
  */
  
+//session management 
+session_start(); 
+
+//global settings
 define("SHOW_ERRORS", true);
 define('LOG', true);
 define('default_controller', 'welcome');

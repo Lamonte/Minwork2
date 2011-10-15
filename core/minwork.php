@@ -35,8 +35,12 @@ class Minwork {
 			require_once $controller_class_file;
 			
 			$controller_class = ucfirst($controller) . "_Controller";
+			
 			$action = Request::instance()->get("a");
 			$action = empty($action) ? "index" : $action;
+			
+			//all action classe methods will need to use the 'action_' prefix now
+			$action = "action_" . $action; 
 			
 			$params = Request::instance()->get("params");
 			$params = empty($params) ? array() : @explode(",", $params);
