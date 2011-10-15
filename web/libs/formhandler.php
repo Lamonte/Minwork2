@@ -19,8 +19,8 @@ class FormHandler {
 	);
 	
 	public static $rules_message = array(
-		'empty' => 'Input field $1 is empty!',
-		'url'	=> 'Input field $1 not a valid url',
+		'empty' => "Input field '$1' is empty!",
+		'url'	=> "Input field '$1' not a valid url",
 	);
 	
 	public static $callbacks_message = array();
