@@ -11,6 +11,8 @@ class View
 	private $_view        = null;
 	private $_render_data = null;
 	private $_throw_excep = true;
+	private static $instance	= null;
+	
 	/**
 	 * Setup some class defaults
 	 */
@@ -21,6 +23,14 @@ class View
 							//main use is for using this class in none controllers/views
 	}
 
+	public static function instance($template = 'template') {
+		$class = __CLASS__;
+		if(is_null(self::$instance)) {
+			self::$instance = new $class($template);
+		}
+		return self::$instance;
+	}
+	
 	/**
 	 * Newly created data added to class array so we
 	 * know which data to extract when rendering the view as

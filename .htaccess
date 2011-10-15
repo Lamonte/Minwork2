@@ -2,7 +2,7 @@
 RewriteEngine On
 
 # Installation directory
-RewriteBase /Minwork2/
+RewriteBase /imagedb/
 
 # Protect application and system files from being viewed
 RewriteRule ^(core|web) - [F,L]

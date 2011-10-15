@@ -112,7 +112,6 @@ class Uri
 	public function base()
 	{
 		global $config;
-		return (isset($config['uri']) && isset($config['uri']['base']) 
-			? $config['uri']['base'] : null);
+		return (isset($config[db_connection]['uri']) && isset($config[db_connection]['uri']) ? $config[db_connection]['uri']['base'] : null);
 	}
 }
