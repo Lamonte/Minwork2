@@ -13,6 +13,7 @@ define("SHOW_ERRORS", true);
 define('LOG', true);
 define('default_controller', 'welcome');
 define('enable_database', true);
+define('db_connection', 'default');
 
 //The first parameter determines which connection you are on
 //make a clone of this array if you have seperate servers
@@ -22,6 +23,8 @@ $config['default'] = array(
 		'user' => 'root',
 		'pass' => '',
 		'host' => 'localhost',
+		'tble' => 'items',
+		'type' => 'Mysql',
 	),
 	'uri' => array(
 		'base' => 'http://localhost/minwork2/' 

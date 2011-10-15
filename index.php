@@ -24,3 +24,13 @@ try {
 } catch(Exception $e) {
 	echo "Caught Exception: " . $e->getMessage();
 }
+
+$db = new Database();
+$db->connect();
+
+$query = $db->query("SELECT * FROM `items`");
+while($row = $db->fetch()) {
+	print_r($row);
+}
+
+$db->close();
