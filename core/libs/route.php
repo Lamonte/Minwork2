@@ -58,7 +58,11 @@ class route {
 		//check if the array isn't empty then assign the rest of the 
 		//variables to the params global variable.
 		if(is_array($url_array) && !empty($url_array)) {
-			$_GET['params'] = $url_array;
+			$temp_url_array = array();
+			foreach($url_array as $url_arr) {
+				$temp_url_array[] = $url_arr;
+			}
+			$_GET['params'] = $temp_url_array;
 		}
 	}	
 	

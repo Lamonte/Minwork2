@@ -36,14 +36,14 @@ class Minwork {
 			
 			$controller_class = ucfirst($controller) . "_Controller";
 			
-			$action = Request::instance()->get("a");
+			$action = request::instance()->get("a");
 			$action = empty($action) ? "index" : $action;
 			
 			//all action classe methods will need to use the 'action_' prefix now
 			$action = "action_" . $action; 
 			
-			$params = Request::instance()->get("params");
-			$params = empty($params) ? array() : @explode(",", $params);
+			$params = request::instance()->get("params"); //not getting variables correctly
+			$params = (is_array($params) ? $params : array());
 			
 			//check if class exists
 			if(!class_exists($controller_class)) {
@@ -62,7 +62,7 @@ class Minwork {
 			}
 			
 			//load the action and send the parameters to the method
-			call_user_func(array($controller, $action), $params);
+			call_user_func_array(array($controller, $action), $params);
 			
 			//render template file if template class is extended
 			if($template_enabled) {

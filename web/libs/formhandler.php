@@ -8,7 +8,7 @@
  * @package	library 
  */
  
-class FormHandler {
+class formhandler {
 
 	public static $rules = array(); //user defined rules
 	public static $callbacks = array(); //user defined callbacks

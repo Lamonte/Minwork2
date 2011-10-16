@@ -1,95 +1,47 @@
 <?php
+
 /**
- * @todo	Update comments and clean up code, looks like shit lol 
- * @author	MinWork Developers
- * @copyright	2009-2010
- * @package	Core
+ * Request library
+ *
+ * @copyright	2011
+ * @package	core
  */
  
 class request {
 
-	private $xss_clean = FALSE;
 	public static $instance = null;
-	private function __construct() {}
-	
-	/**
-	 * Singleton Pattern - Must always call this function 
-	 * Ex. Request::instance()->get("url");
-	 */
-	public static function instance(){
+	public function instance() {
 		$class = __CLASS__;
 		if(is_null(self::$instance)) {
-			self::$instance = new $class;
+			self::$instance = new $class();
 		}
 		return self::$instance;
 	}
 	
-	public function get($data, $xss = true)
-	{
-		//clean data
-		if (is_array($_GET)) {
-			foreach ($_GET as $key => $val) {
-				$_GET[$key] = $this->clean_input_data($val);
+	public function get($key, $xss_clean = true) {
+		$this->clean($_GET[$key], $xss_clean);
+		return $_GET[$key];
+	}
+	
+	public function post($key, $xss_clean = true) {
+		$this->clean($_POST[$key], $xss_clean);
+		return $_POST[$key];
+	}
+	
+	public function clean(&$data, $xss_clean = true) {
+		if(is_array($data)) {
+			foreach($data as $key => $val) {
+				$data[$key] = $this->clean($val, $xss_clean);
 			}
 		} else {
-			$_GET = array();
-		}
-		
-		//setup data
-		if(isset($_GET[$data])) {
-			$data = $_GET[$data];
-			if($xss === true) {
-				$data = $this->remove_xss($data);
-			}
+			$data = trim($data);
+			$data = get_magic_quotes_gpc() ? stripslashes($data) : $data;
+			$data = $xss_clean == true ? $this->remove_xss($data) : $data;
 			return $data;
 		}
-		
-		return null;
 	}
 	
-	public function post($data, $xss = true)
-	{
-		//clean data
-		if (is_array($_POST)) {
-			foreach ($_POST as $key => $val) {
-				// Sanitize $_POST
-				$_POST[$key] = $this->clean_input_data($val);
-			}
-		} else {
-			$_POST = array();
-		}
-		
-		//setup data
-		if(isset($_POST[$data])) {
-			$data = $_POST[$data];
-			if($xss === true) {
-				$data = $this->remove_xss($_POST[$data]);
-			}
-			return $data;
-		}
-		
-		return null;
-	}
-	
-	/**
-	 * Clean input data
-	 */
-	private function clean_input_data($data)
-	{
-		if (get_magic_quotes_gpc()) {
-			$data = stripslashes($data);
-		}
-		
-		$data = trim($data);
-		
-		return $data;
-	}
-	
-	/**
-	 * Class I stole from Kohanaphp that cleans out any xss invulnerabilities
-	 */
-	private function remove_xss($data)
-	{
+	public function remove_xss($data) {
 		// http://svn.bitflux.ch/repos/public/popoon/trunk/classes/externalinput.php
 		// +----------------------------------------------------------------------+
 		// | Copyright (c) 2001-2006 Bitflux GmbH                                 |
@@ -152,4 +104,4 @@ class request {
 		
 		return $data;
 	}
-}	
+}

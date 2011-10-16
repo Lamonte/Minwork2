@@ -1,6 +1,6 @@
 <?php
 
-class Sess {
+class sess {
 	
 	public static $instance = null;
 	

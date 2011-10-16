@@ -24,10 +24,25 @@ CHANGES 10/15/2011
 - Weird issue calling the route function from the index.php so I created a new instance
 	and put it into a variable
 	
+===================
+CHANGES 10/16/2011
+===================
+
+- Rewrote the request library because there were issues with it cleaning global variables such as
+	$_GET and $_POST.  Made variables passed as references to fix the issue and shortened the
+	code a bit.
+- Updated the Minwork core class to work with the new route library, fixed some bugs.
+- Minwork class was using the wrong version of call_user_func, it now uses call_user_func_array
+- Updated the route library to fix an issue with the params being sent incorrectly, did a minor fix
+	
 =========
 ---------
 TODO LIST
 ---------
 =========
 
+* = important
+
 - FormHandler - Add new static rules like length[number], then take that and pass the data between the brackets to the function
+	
+latest updated route.php, request.php
