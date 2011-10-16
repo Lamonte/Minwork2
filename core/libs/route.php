@@ -77,8 +77,8 @@ class route {
 	 * @param string $replacement
 	 * @return void
 	 */
-	public static function add_mask($mask_name, $replacement) {
-		self::$mask[] = array($mask_name, $replacement);
+	public static function add_mask($mask_name, $replacement, $regex = false) {
+		self::$mask[] = array($mask_name, $replacement, $regex);
 	}
 	
 	public function start_masking() {
@@ -95,24 +95,29 @@ class route {
 		
 		//loop through every mask
 		foreach(self::$mask as $mask) {
+		
+			if($mask[2] != true) {
 			
-			//Prepare string to be parsed, so it doesn't break regular expressions
-			$mask[0] = preg_quote($mask[0], "/");
-			
-			//replace any regular expression placers
-			foreach(self::$regex as $regex => $val) {
+				//Prepare string to be parsed, so it doesn't break regular expressions
+				$mask[0] = preg_quote($mask[0], "/");
 				
-				//Fix regular expression placers so they can get parsed correctly
-				$temp_regex = preg_quote($regex, "/");
-				$mask[0] = str_replace($temp_regex, $regex, $mask[0]);
-				
-				//Replace regular expression placers with actual regular expression syntax
-				$mask[0] = str_replace($regex, $val, $mask[0]);
+				//replace any regular expression placers
+				foreach(self::$regex as $regex => $val) {
+					
+					//Fix regular expression placers so they can get parsed correctly
+					$temp_regex = preg_quote($regex, "/");
+					$mask[0] = str_replace($temp_regex, $regex, $mask[0]);
+					
+					//Replace regular expression placers with actual regular expression syntax
+					$mask[0] = str_replace($regex, $val, $mask[0]);
+					
+				}
 				
 			}
 			
 			//check if the masked page is actually loaded
 			$current_url = implode("/", $url_array);
+			
 			if(preg_match("/" . $mask[0] . "/i", $current_url, $matches)) {
 				
 				//replace temp variables inside the controller string
@@ -123,7 +128,7 @@ class route {
 				//setup global variables
 				$masked_url = $mask[1];
 				$masked_url = uri::instance()->split_segments($masked_url);
-				
+			
 				//@todo Make this & the basic remapping into a function to minimize code
 				//setup the controller and action global variables for later use
 				$_GET['c'] = isset($masked_url[0]) ? $masked_url[0] : null;
