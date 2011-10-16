@@ -7,7 +7,7 @@
  * @copyright	2011-2012
  */
  
-class Database {
+class database {
 	public $dbclass = null;
 	public static $instance = null;
 	public $connected = false; //if we're connected we have to close our connection, just a reminder
@@ -21,7 +21,7 @@ class Database {
 	public static function instance() {
 		$class = __CLASS__;
 		if(is_null(self::$instance)) {
-			self::$instance = new Database();
+			self::$instance = new $class();
 		}
 		return self::$instance;
 	}
@@ -49,13 +49,4 @@ class Database {
 	public function num_rows() {
 		return $this->dbclass->num_rows();
 	}
-}
-
-abstract class Database_abstract {
-	abstract public function connect($host, $user, $password, $table);
-	abstract public function query($sql_query);
-	abstract public function fetch($result_type);
-	abstract public function close();
-	
-	abstract public function num_rows();
 }

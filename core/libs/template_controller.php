@@ -6,7 +6,7 @@
  * @copyright	2009-2012
  */
  
-class Template_Controller extends Controller {
+class template_controller extends controller {
 
 	public $template = 'template'; //default template file
 	public $auto_render = true;    //check: __render() function
@@ -17,7 +17,7 @@ class Template_Controller extends Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->template = new View($this->template);
+		$this->template = new view($this->template);
 	}
 
 	/**

@@ -11,3 +11,23 @@ CHANGES 10/15/2011
 - FormHandler library now has callbacks so you can use custom function checks from the
 	controller.  Instead of using built in callbacks.  Mainly useful like database
 	checks when needed and possibly other updates.
+	
+------
+	
+- Updated FormHandler.php library changed quotations on the rules because of the output.
+	Ex: 'Input field $1 is empty!', to "Input field '$1' is empty!",
+	
+------
+
+- After attempting to put code on server made all class names lower cased.
+- Removed mysql database_abstract class because it was useless, unnecessary
+- Weird issue calling the route function from the index.php so I created a new instance
+	and put it into a variable
+	
+=========
+---------
+TODO LIST
+---------
+=========
+
+- FormHandler - Add new static rules like length[number], then take that and pass the data between the brackets to the function

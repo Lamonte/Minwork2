@@ -1,6 +1,7 @@
 <?php
 
 function __autoload($classname) {
+
 	//check each necessary folder for class files to be autoloaded
 	$folders = array(
 		'web/libs/',
@@ -11,8 +12,9 @@ function __autoload($classname) {
 	);
 	
 	foreach($folders as $folder) {
-		if(file_exists(ROOT . $folder . $classname . ".php")) {
-			require_once ROOT . $folder . $classname . ".php";
+		$filename = strtolower(ROOT . $folder . $classname . ".php");
+		if(file_exists($filename)) {
+			require_once $filename;
 		}
 	}
 }

@@ -5,7 +5,7 @@
  * @package	Core
  */
  
-class Uri
+class uri
 {
 	private static $_Instance = null;
 	private function __construct(){}
@@ -19,6 +19,20 @@ class Uri
 		return self::$_Instance;
 	}	
 	
+	/*
+	 * Redirect Url
+	 *
+	 * Redirect user directly to the url provided or to a controller provided
+	 */
+	public function redirect($redirect_url) {
+		
+		if(is_array($redirect_url)) {
+			$redirect_url = self::base() . implode("/", $redirect_url);	
+		}
+		
+		header("Location: " . $redirect_url); exit();
+	}
+	
 	/**
 	 * Checks if request uri has any controller/action/params segments
 	 *
@@ -26,7 +40,7 @@ class Uri
 	 */
 	public function has_segments()
 	{
-		if(Uri::count_segments() == 0) {
+		if(uri::count_segments() == 0) {
 			return false;
 		}
 		return true;
@@ -101,7 +115,7 @@ class Uri
 	 */
 	public function count_segments()
 	{
-		return count(Uri::segments());
+		return count(uri::segments());
 	}
 	
 	/** [REWRITE THIS]

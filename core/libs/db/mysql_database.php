@@ -1,6 +1,6 @@
 <?php
 
-class Mysql_database extends Database_abstract {
+class mysql_database {
 
 	public $connect 	= null;
 	public $result 		= null;	 
@@ -18,7 +18,7 @@ class Mysql_database extends Database_abstract {
 		}
 	}
 	
-	public function query($sql_query) {
+	public function query($sql_query) { 
 		$this->result = mysql_query($sql_query);
 		if(!$this->result) {
 			throw new Exception("Could not parse query: " . mysql_error());

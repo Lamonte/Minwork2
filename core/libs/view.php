@@ -5,7 +5,7 @@
  * @package	Core
  */
  
-class View
+class view
 {
 	public  $_data        = array();
 	private $_view        = null;

@@ -10,7 +10,7 @@
  * @copyright	2009-2012
  */
  
-class Route {
+class route {
 	
 	private static $mask = array(); //url masks, used to rewrite a custom url to a controller
 	private static $instance = null;
@@ -37,7 +37,7 @@ class Route {
 	 * @return void
 	 */
 	public function basic_remapping() {
-		$url_array = Uri::instance()->split_segments($_SERVER['REQUEST_URI'], true);
+		$url_array = uri::instance()->split_segments($_SERVER['REQUEST_URI'], true);
 		
 		//return null results if array is empty, use default controller/action
 		if(empty($url_array)) {
@@ -82,7 +82,7 @@ class Route {
 		self::basic_remapping();
 	
 		//current url split into an array
-		$url_array = Uri::instance()->split_segments($_SERVER['REQUEST_URI'], true);
+		$url_array = uri::instance()->split_segments($_SERVER['REQUEST_URI'], true);
 		
 		//if url isn't complete, exit the function
 		if(!is_array($url_array)) {
@@ -117,7 +117,7 @@ class Route {
 				}
 				
 				//setup global variables
-				$masked_url = Uri::instance()->split_segments($mask[1], true);
+				$masked_url = uri::instance()->split_segments($mask[1], true);
 				
 				//@todo Make this & the basic remapping into a function to minimize code
 				//setup the controller and action global variables for later use

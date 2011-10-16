@@ -9,9 +9,9 @@
  * work throughout the framework.
  * @todo setup log and show errors to work with global defined variables
  */
- 
-//session management 
-session_start(); 
+
+//uncomment to enable sessions
+//session_start();
 
 //global settings
 define("SHOW_ERRORS", true);

@@ -1,10 +1,10 @@
 <?php
 
-class Controller {
+class controller {
 	public $db = null;
 	public $model = null;
 	public function __construct() {
-		$this->db = Database::instance();
+		$this->db = database::instance();
 		
 		//Are we allowed to connect?
 		if(enable_database == true) {

@@ -16,7 +16,8 @@ require_once ROOT . "web/config.php";
 require_once ROOT . "core/autoload.php";
 
 //Start url masking
-Route::instance()->start_masking();
+$route = new route();
+$route->start_masking();
 
 try {
 	$Minwork = new Minwork();

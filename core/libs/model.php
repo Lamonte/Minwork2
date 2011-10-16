@@ -1,6 +1,6 @@
 <?php
 
-class Model {
+class model {
 	public $db = null;
 	
 	public function __construct () {

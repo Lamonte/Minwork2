@@ -6,7 +6,7 @@
  * @package	Core
  */
  
-class Request {
+class request {
 
 	private $xss_clean = FALSE;
 	public static $instance = null;

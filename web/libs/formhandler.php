@@ -71,7 +71,7 @@ class FormHandler {
 				//locate the function used to check said rule
 				$function = self::$rules_function[$rule];
 				
-				//call the function and set error message
+				//call the function, check the resturn value & set error message if the resturn value is true
 				if(self::$function($input)) {
 					self::set_error($input, $rule);
 				}
