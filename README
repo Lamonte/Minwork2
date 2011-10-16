@@ -40,6 +40,8 @@ CHANGES 10/16/2011
 - Updated the uri split_segments function, weird issue everything should be fixed and now routes
 	should be working properly.
 - Added a new bootstrap.php file so i could use routes correctly
+- Fixed an issue with the Minwork class issue with the routing
+- Updated the uri library, there was an issue figuring out what was a directory and what was a url. (hopefully it's fixed)
 	
 =========
 ---------

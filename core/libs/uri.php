@@ -78,8 +78,7 @@ class uri
 	 * @param	bool	default - false
 	 * @return	array
 	 */
-	public function split_segments($url) {
-	
+	public function split_segments($url, $global_url = false) {
 		//search for the index.php and anything before it and remove it
 		$url = preg_replace("/.*?\/index\.php/i", "", $url);
 		
@@ -95,13 +94,27 @@ class uri
 		//remove any unnecessary whitespace from the beginning and end of the string
 		$url = trim($url);
 		
+		//make sure we're getting everything that isn't the directory
+		$url = empty($url) ? array() : @explode("/", $url);
+		
 		if(empty($url)) {
-			return array();
-		} else {
-			$url = @explode("/", $url);
-			return (is_array($url) ? $url : array()); 
+			return $url;	
 		}
-	
+		
+		if($global_url == true) {
+			if(count($url) > 0) {
+				unset($url[0]);
+			}
+			
+			//fix array
+			$temp_url = array();
+			foreach($url as $u) {
+				$temp_url[] = $u;
+			}
+			$url = $temp_url;
+		}
+		
+		return $url;
 	}
 	
 	/**

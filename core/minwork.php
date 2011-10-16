@@ -42,7 +42,7 @@ class Minwork {
 			//all action classe methods will need to use the 'action_' prefix now
 			$action = "action_" . $action; 
 			
-			$params = request::instance()->get("params"); //not getting variables correctly
+			$params = request::instance()->get("params");
 			$params = (is_array($params) ? $params : array());
 			
 			//check if class exists

@@ -121,7 +121,8 @@ class route {
 				}
 				
 				//setup global variables
-				$masked_url = uri::instance()->split_segments($mask[1], true);
+				$masked_url = $mask[1];
+				$masked_url = uri::instance()->split_segments($masked_url);
 				
 				//@todo Make this & the basic remapping into a function to minimize code
 				//setup the controller and action global variables for later use
