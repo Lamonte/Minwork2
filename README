@@ -44,5 +44,6 @@ TODO LIST
 * = important
 
 - FormHandler - Add new static rules like length[number], then take that and pass the data between the brackets to the function
+- Add some form of 404 for controller actions if they don't exist
 	
 latest updated route.php, request.php

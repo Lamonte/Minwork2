@@ -70,7 +70,7 @@ class uri
 		
 		return array();
 	}
-	
+
 	/**
 	 * Strip string into an array of segments
 	 *
@@ -78,32 +78,30 @@ class uri
 	 * @param	bool	default - false
 	 * @return	array
 	 */
-	public function split_segments($uri, $check_index = false)
-	{
-		$save_uri = $uri;
+	public function split_segments($url) {
+	
+		//search for the index.php and anything before it and remove it
+		$url = preg_replace("/.*?\/index\.php/i", "", $url);
 		
-		$uri = preg_replace("/.*?\/index\.php/i", "", $uri);
-		$uri = preg_replace("/\?.*/i", "", $uri);
-		$uri = preg_replace("/\/$/i", "", $uri);
-		$uri = preg_replace("/^\//i", "", $uri);
-		$uri = trim($uri);
+		//replace any get variables starting after the question mark ex. index.php?
+		$url = preg_replace("/\?.*?/i", "", $url);
 		
-		//split segments into an array
-		$uri = empty($uri) ? array() : @explode("/", $uri);
+		//remove the last forward slash if one
+		$url = preg_replace("/\/$/i", "", $url);
 		
-		//[FIGURE OUT WHAT I WAS THINKING HERE THEN EDIT/ADD COMMENT]
-		if(!preg_match("/.*?\/index\.php/i", $save_uri) && $check_index == true) {
-			if(is_array($uri) && count($uri) > 0) {
-				unset($uri[0]);
-			}
-			$new_uri = array();
-			foreach($uri as $u) {
-				$new_uri[] = $u;
-			}
-			$uri = $new_uri;
+		//remove first forward slash 
+		$url = preg_replace("/^\//i", "", $url);
+		
+		//remove any unnecessary whitespace from the beginning and end of the string
+		$url = trim($url);
+		
+		if(empty($url)) {
+			return array();
+		} else {
+			$url = @explode("/", $url);
+			return (is_array($url) ? $url : array()); 
 		}
-		
-		return $uri;
+	
 	}
 	
 	/**

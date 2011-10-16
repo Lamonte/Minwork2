@@ -15,6 +15,9 @@ require_once ROOT . "web/config.php";
 //Autoload which autoloads all our classes when called 
 require_once ROOT . "core/autoload.php";
 
+//Require the bootstrap
+require_once ROOT . "web/bootstrap.php";
+
 //Start url masking
 $route = new route();
 $route->start_masking();
