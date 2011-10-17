@@ -83,7 +83,7 @@ class uri
 		$url = preg_replace("/.*?\/index\.php/i", "", $url);
 		
 		//replace any get variables starting after the question mark ex. index.php?
-		$url = preg_replace("/\?.*?/i", "", $url);
+		$url = preg_replace("/\?.*/i", "", $url);
 		
 		//remove the last forward slash if one
 		$url = preg_replace("/\/$/i", "", $url);

@@ -48,6 +48,12 @@ CHANGES 10/16/2011
 - Made route masking take regular expressions raw, fixes an issue I had with it. 
 - Added a way to show 404 error messages if enabled in the config file.
 	
+===================
+CHANGES 10/17/2011
+===================
+
+- Fixed a bug where the split_segments function in the uri library wasn't removing get data from the url before parsing
+
 =========
 ---------
 TODO LIST
