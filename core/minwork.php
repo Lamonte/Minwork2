@@ -28,7 +28,11 @@ class Minwork {
 			
 			//throw exception here if file doesn't exists
 			if(!file_exists($controller_class_file)) {
-				throw new Exception("Controller file ({$controller_class_file}) doesn't exist!");
+				if(enable_404) {
+					return view::instance("404")->render();
+				} else {
+					throw new Exception("Controller file ({$controller_class_file}) doesn't exist!");
+				}
 			}
 			
 			//require class file
@@ -47,7 +51,11 @@ class Minwork {
 			
 			//check if class exists
 			if(!class_exists($controller_class)) {
-				throw new Exception("Controller Class ({$controller_class}) doesn't exist!");
+				if(enable_404) {
+					return view::instance("404")->render();
+				} else {
+					throw new Exception("Controller Class ({$controller_class}) doesn't exist!");
+				}
 			}
 			
 			//create a new instance of the controller
@@ -58,7 +66,11 @@ class Minwork {
 			
 			//check if method exists
 			if(!method_exists($controller_class, $action)) {
-				throw new Exception("Controller Method ({$action}) doesn't exist!");
+				if(enable_404) {
+					return view::instance("404")->render();
+				} else {
+					throw new Exception("Controller Method ({$action}) doesn't exist!");
+				}
 			}
 			
 			//load the action and send the parameters to the method

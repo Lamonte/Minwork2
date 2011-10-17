@@ -46,6 +46,7 @@ CHANGES 10/16/2011
 ------
 
 - Made route masking take regular expressions raw, fixes an issue I had with it. 
+- Added a way to show 404 error messages if enabled in the config file.
 	
 =========
 ---------
@@ -56,6 +57,3 @@ TODO LIST
 * = important
 
 - FormHandler - Add new static rules like length[number], then take that and pass the data between the brackets to the function
-- Add some form of 404 for controller actions if they don't exist
-	
-latest updated route.php, request.php

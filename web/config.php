@@ -7,18 +7,26 @@
  * settings that control the minwork2 framework.
  * Editing these settings will control how some things
  * work throughout the framework.
- * @todo setup log and show errors to work with global defined variables
  */
-
+ 
 //uncomment to enable sessions
-//session_start();
-
-//global settings
+//session_start(); 
+ 
+//Unused needs to be enabled in the code soon
 define("SHOW_ERRORS", true);
 define('LOG', true);
-define('default_controller', 'welcome');
+
+//Default controller class
+define('default_controller', 'images');
+
+//Enable database class
 define('enable_database', true);
-define('db_connection', 'default');
+
+//Which database connect do we use
+define('db_connection', 'dev');
+
+//Enable 404 template
+define('enable_404', false);
 
 //The first parameter determines which connection you are on
 //make a clone of this array if you have seperate servers
