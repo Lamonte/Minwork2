@@ -62,6 +62,10 @@ CHANGES 10/19/2011
 - Fixed an issue in the database class which checked if the class actually existed
 - Fixed an issue in the index.php file where it tried closing a database connection as if it was already open
 
+-------
+
+- Fixed an issue where the controller parent class was trying to access the database class outside the if statement
+
 =========
 ---------
 TODO LIST
