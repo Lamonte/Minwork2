@@ -2,10 +2,10 @@
 RewriteEngine On
 
 # Installation directory
-RewriteBase /imagedb/
+RewriteBase /Minwork2/
 
 # Protect application and system files from being viewed
-RewriteRule ^(core|web) - [F,L]
+RewriteRule ^(core|web/controllers|web/libs|web/models|web/config\.php) - [F,L]
 
 # Allow any files or directories that exist to be displayed directly
 RewriteCond %{REQUEST_FILENAME} !-f
