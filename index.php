@@ -30,6 +30,6 @@ try {
 }
 
 //Disconnect database if we're connected
-if(Database::instance()->connected) {
+if(enable_database && Database::instance()->connected) {
 	Database::instance()->close();
 }

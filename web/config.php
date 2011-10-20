@@ -20,13 +20,13 @@ define('LOG', true);
 define('default_controller', 'images');
 
 //Enable database class
-define('enable_database', true);
+define('enable_database', false);
 
 //Which database connect do we use
-define('db_connection', 'dev');
+define('db_connection', 'default');
 
 //Enable 404 template
-define('enable_404', false);
+define('enable_404', true);
 
 //The first parameter determines which connection you are on
 //make a clone of this array if you have seperate servers

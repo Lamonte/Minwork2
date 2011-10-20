@@ -53,6 +53,14 @@ CHANGES 10/17/2011
 ===================
 
 - Fixed a bug where the split_segments function in the uri library wasn't removing get data from the url before parsing
+	
+===================
+CHANGES 10/19/2011
+===================
+
+- Fixed an issue where the default configuration file enabled databases by default
+- Fixed an issue in the database class which checked if the class actually existed
+- Fixed an issue in the index.php file where it tried closing a database connection as if it was already open
 
 =========
 ---------

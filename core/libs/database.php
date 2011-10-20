@@ -14,7 +14,10 @@ class database {
 	
 	public function __construct() {
 		global $config;
-		$this->dbclass = $config[db_connection]['db']['type'] . "_database";
+		$this->dbclass = isset($config[db_connection]['db']['type']) ? $config[db_connection]['db']['type'] . "_database" : null;
+		if(!class_exists($this->dbclass)) {
+			throw new Exception("Database class ({$this->dbclass}) couldn't be loaded");
+		}
 		$this->dbclass = new $this->dbclass();
 	}
 	
