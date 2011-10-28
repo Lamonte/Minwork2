@@ -61,7 +61,7 @@ CHANGES 10/19/2011
 - Fixed an issue where the default configuration file enabled databases by default
 - Fixed an issue in the database class which checked if the class actually existed
 - Fixed an issue in the index.php file where it tried closing a database connection as if it was already open
-- Fixed an issue where the controller parent class was trying to access the database class outside the if statement[
+- Fixed an issue where the controller parent class was trying to access the database class outside the if statement
 - Fixed a bug where the .htaccess was blocking the views folder, should be fixed now.
 
 =========
@@ -73,3 +73,4 @@ TODO LIST
 * = important
 
 - FormHandler - Add new static rules like length[number], then take that and pass the data between the brackets to the function
+- Add escape function to the database class(s) ex. $this->db->escape($input)

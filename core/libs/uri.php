@@ -31,6 +31,18 @@ class uri
 		}
 		
 		header("Location: " . $redirect_url); exit();
+	}	
+	
+	/*
+	 * Soft Redirect Url
+	 *
+	 * Similar to the other redirect function, except this is the 
+	 * html version which redirects to controllers
+	 */
+	public function sredirect($text, $action = '', $duration = 3) { 
+		$action = (preg_match("/^http:\/\//i", $action) ? $action : uri::base($action));
+		$html = $text . '<meta http-equiv="refresh" content="' . $duration . '; url=' . $action . '" />';
+		return $html;
 	}
 	
 	/**
@@ -134,9 +146,11 @@ class uri
 	 *
 	 * @return	string
 	 */
-	public function base()
+	public function base($append = '')
 	{
 		global $config;
-		return (isset($config[db_connection]['uri']) && isset($config[db_connection]['uri']) ? $config[db_connection]['uri']['base'] : null);
+		$base =  (isset($config[db_connection]['uri']) && isset($config[db_connection]['uri']) ? $config[db_connection]['uri']['base'] : null);
+		$base .= $append;
+		return $base;
 	}
 }
